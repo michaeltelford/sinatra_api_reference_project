@@ -1,0 +1,22 @@
+version: '2'
+services:
+  db:
+    container_name: postgres
+    image: postgres:10
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+  web:
+    container_name: web
+    build: .
+    command: bash -c "bundle exec rake serve"
+    volumes:
+      - .:/web
+    ports:
+      - "${DEV_PORT}:${DEV_PORT}"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=${POSTGRES_PORT}
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
