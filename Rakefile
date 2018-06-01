@@ -4,13 +4,18 @@ require 'dotenv/tasks'
 DEFAULT_DEV_PORT = 8080
 DEFAULT_PROD_PORT = 80
 
+task default: :help
+
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.libs << 'lib'
   t.test_files = FileList['test/**/*_test.rb']
 end
 
-task default: :test
+desc "Display task descriptions"
+task :help do
+  system "bundle exec rake -T"
+end
 
 desc "Start the app in dev on ENV['DEV_PORT'] or port #{DEFAULT_DEV_PORT}"
 task serve: :dotenv do
@@ -37,7 +42,7 @@ task browse: [:open, :serve]
 desc 'Load .env and run docker-compose up'
 task up: :dotenv do
   if not ENV['POSTGRES_PORT'] or not ENV['DEV_PORT']
-    print "Required .env vars: POSTGRES_PORT, DEV_PORT"
+    print "Required ENV vars: POSTGRES_PORT, DEV_PORT"
   else
     system "docker-compose up"
   end
