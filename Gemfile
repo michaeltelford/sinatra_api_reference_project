@@ -9,8 +9,7 @@ gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rack-reducer'
-gem 'rom'
-gem 'rom-sql'
+gem 'activerecord'
 
 group :development, :test do
   gem 'minitest', '~> 5.0'

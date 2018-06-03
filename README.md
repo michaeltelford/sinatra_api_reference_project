@@ -7,6 +7,6 @@ Feel free to clone or fork the repo to use this as a starting point for your own
 ## Configured Tech
 
 - [`sinatra`](http://sinatrarb.com/) - pre-configured web app
-- [`romrb`](http://rom-rb.org/) - model layer for querying postgres
+- [`activerecord`](http://guides.rubyonrails.org/active_record_basics.html) - model layer for querying postgres
 - [`rack-reducer`](https://github.com/chrisfrank/rack-reducer) - lib for easily querying models using URL query params
 - `docker` and `docker-compose` - for virtualisation
