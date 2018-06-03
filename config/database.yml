@@ -1,0 +1,4 @@
+default_env:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

@@ -9,6 +9,7 @@ gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rack-reducer'
+gem 'pg'
 gem 'activerecord'
 
 group :development, :test do
