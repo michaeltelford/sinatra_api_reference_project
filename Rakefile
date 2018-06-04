@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rake/testtask'
 require 'dotenv/tasks'
 
@@ -12,9 +14,9 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_test.rb']
 end
 
-desc "Display task descriptions"
+desc 'Display task descriptions'
 task :help do
-  system "bundle exec rake -T"
+  system 'bundle exec rake -T'
 end
 
 desc "Start the app in dev on ENV['DEV_PORT'] or port #{DEFAULT_DEV_PORT}"
@@ -41,9 +43,32 @@ task browse: [:open, :serve]
 
 desc 'Load .env and run docker-compose up'
 task up: :dotenv do
-  if not ENV['DB_PORT'] or not ENV['DEV_PORT']
-    print "Required ENV vars: DB_PORT, DEV_PORT"
+  if !ENV['DB_PORT'] or !ENV['DEV_PORT']
+    print 'Required ENV vars: DB_PORT, DEV_PORT'
   else
-    system "docker-compose up"
+    system 'docker-compose up'
+  end
+end
+
+# Database specific tasks.
+namespace :db do
+  desc 'Establish a connection to the database'
+  task :connect do
+  end
+
+  desc 'Create the database'
+  task create_db: :connect do
+  end
+
+  desc 'Run data migrations'
+  task migrate: :connect do
+  end
+
+  desc 'Seed development data'
+  task seed: :connect do
+  end
+
+  desc 'Remove all tables in the database'
+  task nuke: :connect do
   end
 end

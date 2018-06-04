@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dotenv'
 require 'thin'
 require 'sinatra/base'
@@ -7,12 +9,12 @@ require_relative 'helpers'
 
 # App init, place any initialisation/configuration code below...
 class App < Sinatra::Base
-  Dotenv.load # load .env file into ENV
+  Dotenv.load # Load .env file vars into the ENV
 
   configure :development do
     require 'byebug'
     require 'sinatra/reloader'
-    
+
     register Sinatra::Reloader
   end
 
@@ -21,16 +23,10 @@ class App < Sinatra::Base
     enable :logging
   end
 
-  ActiveRecord::Base.establish_connection(
-    adapter: ENV['DB_ADAPTER'] || 'postgresql',
-    database: ENV['DB_DATABASE'] || 'postgres',
-    host: ENV['DB_HOST'] || 'localhost',
-    port: ENV['DB_PORT'] || 5432,
-    username: ENV['DB_USERNAME'] || 'postgres',
-    password: ENV['DB_PASSWORD'] || 'postgres'
-  )
+  helpers Helpers # Route and template scope.
+  extend  Helpers # App class scope.
 
-  helpers Helpers
+  connect_to_database
 end
-  
+
 require_relative 'routes'

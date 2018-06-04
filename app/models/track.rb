@@ -1,7 +1,6 @@
-class Album < ActiveRecord::Base
-  has_many :tracks
-end
+# frozen_string_literal: true
 
+# Track model.
 class Track < ActiveRecord::Base
   belongs_to :album
 end
