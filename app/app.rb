@@ -24,7 +24,7 @@ class App < Sinatra::Base
   end
 
   helpers Helpers # Route and template scope.
-  extend  Helpers # App class scope.
+  include Helpers # App class scope.
 
   connect_to_database
 end

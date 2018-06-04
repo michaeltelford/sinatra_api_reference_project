@@ -6,7 +6,7 @@ module Helpers
   # Connects to the DB or throws an exception.
   # ActiveRecord then holds the connection (globally).
   # The ENV is used if present, otherwise sensible defaults are applied. 
-  def connect_to_database
+  def self.connect_to_database
     ActiveRecord::Base.establish_connection(
       adapter: ENV['DB_ADAPTER'] || 'postgresql',
       database: ENV['DB_DATABASE'] || 'postgres',

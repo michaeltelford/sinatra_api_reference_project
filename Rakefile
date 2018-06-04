@@ -2,6 +2,9 @@
 
 require 'rake/testtask'
 require 'dotenv/tasks'
+require 'pg'
+require 'active_record'
+require_relative 'app/helpers'
 
 DEFAULT_DEV_PORT = 8080
 DEFAULT_PROD_PORT = 80
@@ -10,7 +13,7 @@ task default: :help
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
-  t.libs << 'lib'
+  t.libs << 'app'
   t.test_files = FileList['test/**/*_test.rb']
 end
 
@@ -54,6 +57,7 @@ end
 namespace :db do
   desc 'Establish a connection to the database'
   task :connect do
+    Helpers.connect_to_database
   end
 
   desc 'Create the database'
