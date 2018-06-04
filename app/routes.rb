@@ -1,15 +1,7 @@
 # App routes and controllers.
 class App < Sinatra::Base
-  require 'pg'
-  require 'active_record'
-  config = {
-    :adapter  => 'postgresql',
-    :database => 'postgres',
-    :username => 'postgres',
-    :password => 'postgres',
-    :host     => 'db'
-  }
-  ActiveRecord::Base.establish_connection(config)
+  
+  
 
   # ActiveRecord::Schema.define do
   #   create_table :albums do |table|

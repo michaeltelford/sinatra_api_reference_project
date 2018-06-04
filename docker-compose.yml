@@ -4,7 +4,7 @@ services:
     container_name: postgres
     image: postgres:10
     ports:
-      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+      - "${DB_PORT}:${DB_PORT}"
   web:
     container_name: web
     build: .
@@ -17,6 +17,6 @@ services:
       - db
     environment:
       - DB_HOST=db
-      - DB_PORT=${POSTGRES_PORT}
+      - DB_PORT=${DB_PORT}
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres

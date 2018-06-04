@@ -41,8 +41,8 @@ task browse: [:open, :serve]
 
 desc 'Load .env and run docker-compose up'
 task up: :dotenv do
-  if not ENV['POSTGRES_PORT'] or not ENV['DEV_PORT']
-    print "Required ENV vars: POSTGRES_PORT, DEV_PORT"
+  if not ENV['DB_PORT'] or not ENV['DEV_PORT']
+    print "Required ENV vars: DB_PORT, DEV_PORT"
   else
     system "docker-compose up"
   end
