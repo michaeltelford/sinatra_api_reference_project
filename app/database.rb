@@ -3,9 +3,10 @@
 # Database helpers module.
 module Database
   # Connects to the DB or throws an exception.
+  # Takes a ROM configuration as a parameter.
   # The configured ROM container is returned.
-  def self.connect
-    ROM.container(Database.configure)
+  def self.connect(config)
+    ROM.container(config)
   end
 
   # Returns the ROM DB configuration.

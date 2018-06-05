@@ -21,7 +21,8 @@ end
 
 namespace :db do
   task setup: :dotenv do
-    ROM::SQL::RakeSupport.env = Database.connect
+    config = Database.configure
+    ROM::SQL::RakeSupport.env = Database.connect(config)
   end
 end
 

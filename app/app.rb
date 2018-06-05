@@ -27,7 +27,9 @@ class App < Sinatra::Base
 
   helpers Helpers
 
-  Database.connect
+  config = Database.configure
+  config.auto_registration('models')
+  set :rom, Database.connect(config)
 end
 
 require_relative 'routes'
