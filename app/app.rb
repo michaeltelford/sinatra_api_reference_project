@@ -4,12 +4,14 @@ require 'dotenv'
 require 'thin'
 require 'sinatra/base'
 require 'pg'
-require 'active_record'
+require 'rom'
+require 'rom-sql'
+require_relative 'database'
 require_relative 'helpers'
 
 # App init, place any initialisation/configuration code below...
 class App < Sinatra::Base
-  Dotenv.load # Load .env file vars into the ENV
+  Dotenv.load # Load .env file vars into the ENV.
 
   configure :development do
     require 'byebug'
@@ -23,10 +25,9 @@ class App < Sinatra::Base
     enable :logging
   end
 
-  helpers Helpers # Route and template scope.
-  include Helpers # App class scope.
+  helpers Helpers
 
-  connect_to_database
+  Database.connect
 end
 
 require_relative 'routes'

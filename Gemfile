@@ -8,9 +8,11 @@ gem 'rack-protection'
 gem 'thin'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'rack-reducer'
 gem 'pg'
-gem 'activerecord'
+gem 'rom'
+gem 'rom-sql'
+gem 'rack-jsonparser', require: 'rack/json_parser'
+gem 'rack-reducer', require: 'rack/reducer'
 
 group :development, :test do
   gem 'minitest', '~> 5.0'

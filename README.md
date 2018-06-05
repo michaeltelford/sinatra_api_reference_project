@@ -7,7 +7,8 @@ Feel free to clone or fork the repo to use this as a starting point for your own
 ## Configured Tech
 
 - [`sinatra`](http://sinatrarb.com/) - pre-configured web app
-- [`activerecord`](http://guides.rubyonrails.org/active_record_basics.html) - model layer for querying postgres
+- [`romrb`](http://rom-rb.org/) - model layer for querying postgres
+- [`rack-jsonparser`](https://github.com/michaeltelford/rack_jsonparser) - middleware for handling JSON requests and responses
 - [`rack-reducer`](https://github.com/chrisfrank/rack-reducer) - lib for easily querying models using URL query params
 - `docker` and `docker-compose` - for virtualisation
 
@@ -20,9 +21,8 @@ Create an `.env` file at the root of the repo and add the below variables to it.
 ```bash
 DEV_PORT=8080
 PORT=7000
-
-DB_ADAPTER=postgresql
-DB_DATABASE=app
+DB_ADAPTER=postgres
+DB_DATABASE=postgres
 DB_HOST=db
 DB_PORT=5432
 DB_USERNAME=postgres
