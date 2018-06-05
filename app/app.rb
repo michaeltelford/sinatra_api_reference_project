@@ -6,11 +6,14 @@ require 'sinatra/base'
 require 'pg'
 require 'rom'
 require 'rom-sql'
+require 'rom-repository'
 require_relative 'database'
 require_relative 'helpers'
 
 # App init, place any initialisation/configuration code below...
 class App < Sinatra::Base
+  attr_reader :container
+
   Dotenv.load # Load .env file vars into the ENV.
 
   configure :development do
@@ -29,7 +32,7 @@ class App < Sinatra::Base
 
   config = Database.configure
   config.auto_registration('models')
-  set :rom, Database.connect(config)
+  @container = Database.connect(config)
 end
 
 require_relative 'routes'

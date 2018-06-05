@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# Require endpoint controllers...
+# Require all endpoint controllers below...
 require_relative 'controllers/healthcheck'
-require_relative 'controllers/album'
+require_relative 'controllers/albums'
