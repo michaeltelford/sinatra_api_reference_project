@@ -36,4 +36,11 @@ module Database
       password: ENV['DB_PASSWORD'] || 'postgres'
     }
   end
+
+  # Register romrb components e.g. relations, commands and mappers.
+  # Takes a ROM configuration as a parameter.  
+  def self.register_components(config)
+    require_relative 'models/relations/albums'
+    config.register_relation(Albums)
+  end
 end

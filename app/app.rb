@@ -29,17 +29,8 @@ class App < Sinatra::Base
   helpers Helpers
 
   config = Database.configure
-  
-  # config.auto_registration(File.expand_path('models', __FILE__))
-  require_relative 'models/relations/albums'
-  config.register_relation(Relations::Albums)
-  
-  container = Database.connect(config)
-  
-  require_relative 'models/repositories/albums'
-  repo = Repositories::Albums.new(container)
-
-  @@container = container
+  Database.register_components(config)
+  @@container = Database.connect(config)
 end
 
 require_relative 'routes'

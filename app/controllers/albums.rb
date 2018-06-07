@@ -7,6 +7,6 @@ class App < Sinatra::Base
   # List all albums.
   get '/albums' do
     repo = Repositories::Albums.new(@@container)
-    [200, {}, [repo.list.count.to_s]]
+    "There are #{repo.list.count} albums\n"
   end
 end
