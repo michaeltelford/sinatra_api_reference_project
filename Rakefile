@@ -24,6 +24,11 @@ namespace :db do
     config = Database.configure
     ROM::SQL::RakeSupport.env = Database.connect(config)
   end
+
+  desc 'Seed dev data into the database'
+  task seed: [:dotenv, :setup] do
+    #TODO.
+  end
 end
 
 desc 'Display task descriptions'

@@ -5,8 +5,8 @@ require_relative '../models/repositories/albums'
 # Album resource endpoints.
 class App < Sinatra::Base
   # List all albums.
-  get '/album' do
-    repo = Repositories::Albums.new(container)
-    repo.list
+  get '/albums' do
+    repo = Repositories::Albums.new(@@container)
+    [200, {}, [repo.list.count.to_s]]
   end
 end

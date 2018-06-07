@@ -12,8 +12,6 @@ require_relative 'helpers'
 
 # App init, place any initialisation/configuration code below...
 class App < Sinatra::Base
-  attr_reader :container
-
   Dotenv.load # Load .env file vars into the ENV.
 
   configure :development do
@@ -31,8 +29,17 @@ class App < Sinatra::Base
   helpers Helpers
 
   config = Database.configure
-  config.auto_registration('models')
-  @container = Database.connect(config)
+  
+  # config.auto_registration(File.expand_path('models', __FILE__))
+  require_relative 'models/relations/albums'
+  config.register_relation(Relations::Albums)
+  
+  container = Database.connect(config)
+  
+  require_relative 'models/repositories/albums'
+  repo = Repositories::Albums.new(container)
+
+  @@container = container
 end
 
 require_relative 'routes'

@@ -8,7 +8,8 @@ services:
   web:
     container_name: web
     build: .
-    command: bash -c "bundle exec rake serve"
+    # Wait for DB, create schema, seed data and start app.
+    command: bash -c "sleep 3; bundle exec rake db:migrate && bundle exec rake db:seed && bundle exec rake serve"
     volumes:
       - .:/web
     ports:
